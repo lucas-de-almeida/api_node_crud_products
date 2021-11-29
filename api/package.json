@@ -1,7 +1,7 @@
 {
   "name": "node_docker_flutter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicação CRUD com Node.js + postGreSQL em Docker",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon",
@@ -9,7 +9,12 @@
     "prepush": "npm run lint",
     "start": "node server.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "postgresql",
+    "azure",
+    "node-postegres"    
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
