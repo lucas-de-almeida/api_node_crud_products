@@ -23,4 +23,12 @@ res.status(201).send({
         product: {product_name, quantity, product_description}
     },
 });
+}
+
+//==>metodo responsavel por selecionar todo os 'Products'
+exports.listAllProducts = async (req, res)=>{
+    const response = await db.query('SELECT * FROM products');
+    res.status(200).send(response.rows);
 };
+
+
