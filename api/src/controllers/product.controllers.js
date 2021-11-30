@@ -26,9 +26,37 @@ res.status(201).send({
 }
 
 //==>metodo responsavel por selecionar todo os 'Products'
+
 exports.listAllProducts = async (req, res)=>{
     const response = await db.query('SELECT * FROM products');
     res.status(200).send(response.rows);
 };
 
 
+//==>metodo responsavel por selecionar um 'Products' pelo Id
+exports.findProductById= async(req,res)=>{
+    const productId=parseInt(req.params.id);
+    const response =  await db.query('SELECT * FROM products WHERE productId = $1',[productId]);
+    res.status(200).send(response.rows);
+}
+
+//==>metodo responsavel por atualizar um 'Products' pelo Id
+
+exports.updateProductById = async (req,res) => {
+    const productId= parseInt(req.params.id);
+    const{product_name,quantity,product_description}=req.body;
+
+    const response = await db.query(
+        'UPDATE products SET product_name = $1 ,quantity = $2 , product_description = $3 WHERE productId = $4',
+        [product_name,quantity,product_description,productId]
+    );
+res.status(200).send({message: 'Product Updated Successfully!'});
+};
+
+
+exports.deleteProductById = async (req,res)=>{
+    const productId=parseInt(req.params.id);
+    await db.query('DELETE FROM products WHERE productId = $1',[productId]);
+
+    res.status(200).send({message: 'Product deleted successfully!', productId});
+};

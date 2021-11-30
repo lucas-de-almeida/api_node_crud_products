@@ -15,10 +15,18 @@ const productController = require('../controllers/product.controllers');
 router.post('/products', productController.createProduct);
 
 
-//==> Rota responsavel por selecionar todos os  'Product':(get): localhost:3000/api/products
+//==> Rota responsavel por selecionar todos os  'Product':(GET): localhost:3000/api/products
 router.get('/products', productController.listAllProducts);
 
 
+//==> Rota responsavel por selecionar  'Product' PELO 'Id':(GET): localhost:3000/api/products/:id
+router.get('/products/:id', productController.findProductById);
+
+//==> Rota responsavel por atualizar   'Product' PELO 'Id':(PUT): localhost:3000/api/products/:id
+router.put('/products/:id', productController.updateProductById);
+
+//==> Rota responsavel por deletar  'Product' PELO 'Id':(DELETE): localhost:3000/api/products/:id
+router.delete('/products/:id', productController.deleteProductById);
 
 
 module.exports = router;
