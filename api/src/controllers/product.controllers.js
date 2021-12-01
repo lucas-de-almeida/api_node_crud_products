@@ -11,16 +11,16 @@ const db = require('../config/database');
 //===> Metodo responsavel por criar um novo produto
 
 exports.createProduct = async(req,res)=>{
-const {product_name, preco,product_description} = req.body;
+const {product_name, preco,product_description,data_cadastro} = req.body;
 const {rows}=await db.query(
-    'INSERT INTO products (product_name,preco,product_description) VALUES ($1,$2,$3)',
-    [product_name,preco,product_description]
+    'INSERT INTO products (product_name,preco,product_description,data_cadastro) VALUES ($1,$2,$3,$4)',
+    [product_name,preco,product_description,data_cadastro]
 );
 
 res.status(201).send({
     message: 'Product added succesfully !',
     body: {
-        product: {product_name, preco, product_description}
+        product: {product_name, preco, product_description,data_cadastro}
     },
 });
 }
@@ -44,11 +44,11 @@ exports.findProductById= async(req,res)=>{
 
 exports.updateProductById = async (req,res) => {
     const productId= parseInt(req.params.id);
-    const{product_name,preco,product_description}=req.body;
+    const{product_name,preco,product_description,data_cadastro}=req.body;
 
     const response = await db.query(
-        'UPDATE products SET product_name = $1 ,preco = $2 , product_description = $3 WHERE productId = $4',
-        [product_name,preco,product_description,productId]
+        'UPDATE products SET product_name = $1 ,preco = $2 , product_description = $3 ,data_cadastro = $4 WHERE productId = $5',
+        [product_name,preco,product_description,data_cadastro,productId]
     );
 res.status(200).send({message: 'Product Updated Successfully!'});
 };
