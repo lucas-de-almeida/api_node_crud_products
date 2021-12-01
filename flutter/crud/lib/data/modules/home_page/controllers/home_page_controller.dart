@@ -10,7 +10,6 @@ class HomePageController extends GetxController with StateMixin {
   @override
   void onInit() {
     if (listProducts.isEmpty) {
-      print('carregando lista ');
       //loadDataMock();
       loadData();
     }
@@ -34,7 +33,7 @@ class HomePageController extends GetxController with StateMixin {
   void loadData() async {
     await productRepo.getAllProducts().then((value) {
       listProducts.assignAll(value);
-      if (value.length > 0) {
+      if (value.isNotEmpty) {
         change(value, status: RxStatus.success());
       } else {
         change(null, status: RxStatus.empty());
@@ -52,16 +51,18 @@ class HomePageController extends GetxController with StateMixin {
   //   await productRepo.deleteProductByIdMock(id);
   // }
 
-  void updateProduct({
+  Future<void> updateProduct({
     required String productName,
     required String productDescription,
     required double preco,
+    required String dataCadastro,
     required int id,
   }) async {
     await productRepo.updateProduct(
       productName,
       productDescription,
       preco,
+      dataCadastro,
       id,
     );
   }

@@ -12,11 +12,9 @@ class EditControllerPage extends GetxController {
 
   @override
   void onInit() {
-    if (product != null) {
-      textQuantity.text = product.preco.toString();
-      textName.text = product.productName;
-      textDescription.text = product.productDescription;
-    }
+    textQuantity.text = product.preco.toString();
+    textName.text = product.productName;
+    textDescription.text = product.productDescription;
 
     super.onInit();
   }

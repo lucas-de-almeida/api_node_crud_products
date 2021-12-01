@@ -16,17 +16,17 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.INITIAL,
-      page: () => HomePage(),
+      page: () => const HomePage(),
       binding: HomePageBindings(),
     ),
-     GetPage(
+    GetPage(
       name: Routes.EDIT,
-      page: () => EditPage(),
+      page: () => const EditPage(),
       binding: EditBindingPage(),
     ),
-     GetPage(
+    GetPage(
       name: Routes.NEW,
-      page: () => NewProductPage(),
+      page: () => const NewProductPage(),
       binding: NewBindingPage(),
     ),
   ];

@@ -1,6 +1,5 @@
-import 'dart:developer';
+// ignore_for_file: sized_box_for_whitespace
 
-import 'package:crud/data/models/product.dart';
 import 'package:crud/data/modules/home_page/controllers/home_page_controller.dart';
 import 'package:crud/data/modules/new_product_page/controller/new_controller_page.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class NewProductPage extends GetView<NewControllerPage> {
         onPressed: () {
           validate();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       appBar: AppBar(
         centerTitle: true,
@@ -128,7 +127,7 @@ class NewProductPage extends GetView<NewControllerPage> {
                   TextFormField(
                     controller: controller.textQuantity,
                     decoration: InputDecoration(
-                      labelText: 'Quantidade do produto',
+                      labelText: 'Preço do produto',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(
@@ -161,7 +160,7 @@ class NewProductPage extends GetView<NewControllerPage> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Por favor insira uma quantidade maior que zero';
+                        return 'Por favor insira um preço maior que zero';
                       }
                       return null;
                     },
@@ -177,7 +176,7 @@ class NewProductPage extends GetView<NewControllerPage> {
 
   void validate() async {
     if (controller.formKey.currentState!.validate()) {
-      homePageController.productRepo.addProduct(
+      await homePageController.productRepo.addProduct(
         productName: controller.textName.text,
         productDescription: controller.textDescription.text,
         preco: double.tryParse(controller.textQuantity.text)!,
@@ -187,8 +186,6 @@ class NewProductPage extends GetView<NewControllerPage> {
       );
 
       homePageController.loadData();
-
-      await Duration(seconds: 2);
 
       Get.back();
     } else {

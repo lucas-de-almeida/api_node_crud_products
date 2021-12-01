@@ -16,7 +16,7 @@ class EditPage extends GetView<EditControllerPage> {
         onPressed: () {
           validate();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       appBar: AppBar(
         centerTitle: true,
@@ -180,18 +180,18 @@ class EditPage extends GetView<EditControllerPage> {
     );
   }
 
-  void validate() {
+  void validate() async {
     if (controller.formKey.currentState!.validate()) {
       controller.product.productName = controller.textName.text;
       controller.product.productDescription = controller.textDescription.text;
       controller.product.preco = double.tryParse(controller.textQuantity.text)!;
 
-      homePageController.updateProduct(
-        productName: controller.textName.text,
-        productDescription: controller.textDescription.text,
-        preco: double.tryParse(controller.textQuantity.text)!,
-        id: (controller.product.productId!),
-      );
+      await homePageController.updateProduct(
+          productName: controller.textName.text,
+          productDescription: controller.textDescription.text,
+          preco: double.tryParse(controller.textQuantity.text)!,
+          id: (controller.product.productId!),
+          dataCadastro: controller.product.dataCadastro);
       homePageController.loadData();
 
       Get.back();

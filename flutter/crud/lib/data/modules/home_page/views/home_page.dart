@@ -1,10 +1,10 @@
-import 'package:crud/data/models/product.dart';
+// ignore_for_file: sized_box_for_whitespace
 
+import 'package:crud/data/models/product.dart';
 import 'package:crud/data/modules/home_page/controllers/home_page_controller.dart';
 import 'package:crud/data/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class HomePage extends GetView<HomePageController> {
@@ -28,8 +28,8 @@ class HomePage extends GetView<HomePageController> {
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
                 childAspectRatio: 3 / 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10),
             itemCount: controller.listProducts.length,
             itemBuilder: (BuildContext ctx, index) {
               Product product = list[index];
@@ -53,11 +53,18 @@ class HomePage extends GetView<HomePageController> {
                                   right: 20, left: 20, bottom: 10, top: 10),
                               child: Text(
                                 product.productDescription,
+                                textAlign: TextAlign.center,
                                 maxLines: 999,
                                 softWrap: true,
                               ),
                             ),
-                            Text(product.dataCadastro)
+                            Text(
+                              'Data cadastro: ${product.dataCadastro}',
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
+                            )
                           ],
                         ),
                         cancel: IconButton(
@@ -80,7 +87,7 @@ class HomePage extends GetView<HomePageController> {
                     alignment: Alignment.center,
                     child: Text(product.productName),
                     decoration: BoxDecoration(
-                        color: Color(0xffdfdeff),
+                        color: const Color(0xffdfdeff),
                         borderRadius: BorderRadius.circular(15)),
                   ),
                 ),

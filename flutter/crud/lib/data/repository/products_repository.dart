@@ -77,9 +77,7 @@ class ProductsRepository {
 
   Future<void> deleteProductById(int id) async {
     var response = await apiclient.deleteProductById(id);
-    if (response != null) {
-      print(response);
-    }
+    if (response != null) {}
   }
 
   // Future<void> deleteProductByIdMock(int id) async {
@@ -97,17 +95,13 @@ class ProductsRepository {
         productDescription: productDescription,
         preco: preco,
         dataCadastro: dataCadastro);
-    if (response != null) {
-      print(response);
-    }
+    if (response != null) {}
   }
 
   Future<void> updateProduct(String productName, String productDescription,
-      double preco, int id) async {
+      double preco, String dataCadastro, int id) async {
     var response = await apiclient.updateProduct(
-        productName, productDescription, preco, id);
-    if (response != null) {
-      print(response);
-    }
+        productName, productDescription, preco, dataCadastro, id);
+    if (response != null) {}
   }
 }
